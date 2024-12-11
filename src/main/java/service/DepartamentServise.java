@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,7 +34,7 @@ public class DepartamentServise {
     public Map<String, List<Employee>> getAllEmployeesByDepartment(String department) {
         List<Employee> employees = employeeService.getAllEmployees();
         return employees.stream()
-                .filter(employee -> employee.getDepartment().equals(department))
+                .filter(employee -> Objects.equals(employee.getDepartment(), department))
                 .collect(Collectors.groupingBy(Employee::getDepartment));
     }
     public Map<String, List<Employee>> getAllEmployeesByDepartments() {
