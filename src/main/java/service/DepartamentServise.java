@@ -20,14 +20,14 @@ public class DepartamentServise {
     public Employee getEmployeeWithMaxSalaryByDepartment(String department) {
         List<Employee> employees = employeeService.getAllEmployees();
         return employees.stream()
-                .filter(employee -> employee.getDepartment().equals(department))
+                .filter(employee -> Objects.equals(employee.getDepartment(), department))
                 .max(Comparator.comparingInt(Employee::getSalary))
                 .orElse(null);
     }
     public Employee getEmployeeWithMinSalaryByDepartment(String department) {
         List<Employee> employees = employeeService.getAllEmployees();
         return employees.stream()
-                .filter(employee -> employee.getDepartment().equals(department))
+                .filter(employee -> Objects.equals(employee.getDepartment(), department))
                 .min(Comparator.comparingInt(Employee::getSalary))
                 .orElse(null);
     }
